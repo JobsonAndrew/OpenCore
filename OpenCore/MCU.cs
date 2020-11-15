@@ -34,6 +34,7 @@ namespace OpenCore {
          Memory.Write(new byte[Memory.Length], 0, (int)Memory.Length);
       }
       public InstructionContainer CurrentInstruction() {
+         Code.Seek(PC, SeekOrigin.Begin);
          return InstructionContainer.GetInstruction(Code);
       }
       public void Clock() {
@@ -129,7 +130,7 @@ namespace OpenCore {
                default:
                   break;
             }
-            PC += ins.Size;
+            if (ins.Rd != 15) PC += ins.Size;
          }
       }
       private void sdb(uint address, uint data) {

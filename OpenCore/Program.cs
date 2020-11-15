@@ -53,14 +53,31 @@ namespace OpenCore {
 
          m.Code.Seek(0, SeekOrigin.Begin);
          InstructionContainer i = new InstructionContainer();
+
          i.Op = ALU.add;
          i.Mux = MUX.im4;
          i.Rd = 0;
          i.Src = 1;
          i.ToStream(m.Code);
+
+         i.Op = ALU.sife;
+         i.Mux = MUX.im4;
+         i.Rd = 0;
+         i.Src = 10;
          i.ToStream(m.Code);
+
+         i.Op = ALU.mov;
+         i.Mux = MUX.im4;
+         i.Rd = 15;
+         i.Src = 0;
          i.ToStream(m.Code);
+
+         i.Op = ALU.mov;
+         i.Mux = MUX.reg;
+         i.Rd = 1;
+         i.Src = 0;
          i.ToStream(m.Code);
+
          m.Code.Seek(0, SeekOrigin.Begin);
 
 
